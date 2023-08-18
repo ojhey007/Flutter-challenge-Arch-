@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
+          color: Colors.teal,
           title: 'Flutter Challenge',
           theme: ThemeData(),
           home: MultiBlocProvider(

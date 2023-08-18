@@ -24,7 +24,7 @@ class AppBarMenu extends StatelessWidget {
               Icons.share,
             ))
       ],
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.teal,
       elevation: 0.0,
     );
   }

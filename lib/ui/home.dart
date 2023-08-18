@@ -49,11 +49,12 @@ class _HomePageState extends State<HomePage> {
           BlocProvider<ArticleBloc>(
             create: (BuildContext context) =>
                 ArticleBloc(RepositoryProvider.of(context))
-                  ..add(LoadArticleEvent()),
+                  ..add(const LoadArticleEvent()),
           ),
         ],
         child: Scaffold(
             appBar: AppBar(
+              backgroundColor: Colors.teal,
               title: const Text("Flutter challenge(Arc)"),
             ),
             body: Column(
@@ -77,12 +78,13 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: TextField(
                       controller: searchController,
                       onChanged: (value) {
                         if (value.length >= 3) {
-                          _dataRepository.searchByKeyWord(value);
+                          ArticleBloc(RepositoryProvider.of(context))
+                              .add(const LoadArticleEvent());
                         }
                       },
                       decoration: const InputDecoration(
@@ -96,34 +98,30 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                Container(
-                  child: BlocBuilder<ArticleBloc, ArticleState>(
-                      builder: ((context, state) {
-                    if (state is ArticleLoadingState) {
-                      return const Center(child: CircularProgressIndicator());
-                      // debugPrint("Loading ...");
-                    }
-                    if (state is ArticleLoadedState) {
-                      List<Articles> articles = state.articles;
-                      return SingleChildScrollView(
-                        child: SizedBox(
-                          height: 400.h,
-                          child: ListView.builder(
-                              itemCount: articles.length,
-                              itemBuilder: (context, index) {
-                                return NewsTile(
-                                    imgUrl:
-                                        "https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-                                    title: articles[index].title,
-                                    description: articles[index].source?.name,
-                                    articleUrl: articles[index].url);
-                              }),
-                        ),
-                      );
-                    }
-                    return Container();
-                  })),
-                ),
+                BlocBuilder<ArticleBloc, ArticleState>(
+                    builder: ((context, state) {
+                  if (state is ArticleLoadingState) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (state is ArticleLoadedState) {
+                    List<Articles> articles = state.articles;
+                    return SingleChildScrollView(
+                      child: SizedBox(
+                        height: 400.h,
+                        child: ListView.builder(
+                            itemCount: articles.length,
+                            itemBuilder: (context, index) {
+                              return NewsTile(
+                                  imgUrl: generalCategoryImg,
+                                  title: articles[index].title,
+                                  description: articles[index].source?.name,
+                                  articleUrl: articles[index].url);
+                            }),
+                      ),
+                    );
+                  }
+                  return Container();
+                })),
               ],
             )));
   }

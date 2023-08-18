@@ -1,6 +1,6 @@
 const apiKey = "ddb676ec8d80401a82ddd0cea2665afc";
 const country = "gb";
-const appTitle = "Flutter Challenge";
+const appTitle = "Flutter Challenge (ARC)";
 const apiVersion = "2";
 
 const generalCategoryImg =

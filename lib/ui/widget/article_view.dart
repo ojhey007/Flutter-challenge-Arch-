@@ -14,8 +14,8 @@ class _ArticleViewState extends State<ArticleView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size(20, 64),
+      appBar: const PreferredSize(
+          preferredSize: Size(20, 64),
           child: AppBarMenu(
             appTitle: "Flutter challenge(Arc) ",
           )),

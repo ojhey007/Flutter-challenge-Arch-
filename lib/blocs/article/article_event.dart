@@ -7,6 +7,7 @@ abstract class ArticleEvent extends Equatable {
 }
 
 class LoadArticleEvent extends ArticleEvent {
+  const LoadArticleEvent();
   @override
   // TODO: implement props
   List<Object?> get props => [];

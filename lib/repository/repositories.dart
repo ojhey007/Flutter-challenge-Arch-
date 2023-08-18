@@ -7,7 +7,7 @@ import 'package:xflutter/model/article_model.dart';
 
 class FetchDataRepository {
   Future<List<Articles>> getNewFeeds() async {
-    Response response = await get(Uri.parse(fetchBykeywords("keywords")));
+    Response response = await get(Uri.parse(loadNewsEndpoint));
     debugPrint("Got Here!! ${response.statusCode}");
     if (response.statusCode == 200) {
       final List result = jsonDecode(response.body)['articles'];
@@ -23,7 +23,6 @@ class FetchDataRepository {
     Response response = await get(Uri.parse(fetchBykeywords(keywords)));
     if (response.statusCode == 200) {
       final List result = jsonDecode(response.body)['articles'];
-      print(Uri.parse(fetchBykeywords(keywords)));
       debugPrint("Got rese!! $result");
 
       return result.map((e) => Articles.fromJson(e)).toList();

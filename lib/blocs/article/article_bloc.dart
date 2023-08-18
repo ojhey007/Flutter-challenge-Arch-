@@ -20,15 +20,5 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
         emit(ErrorState(e.toString()));
       }
     });
-    on<SearchArticleEvent>((event, emit) async {
-      try {
-        final List<Articles> articles =
-            await _fetchDataRepository.searchByKeyWord("Soccer");
-
-        emit(ArticleLoadedState(articles));
-      } catch (e) {
-        emit(ErrorState(e.toString()));
-      }
-    });
   }
 }
