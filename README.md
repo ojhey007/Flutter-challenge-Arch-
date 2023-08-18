@@ -14,3 +14,10 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+THING I WISH I COULD FINISH BEFORE THE TIME LAPSED
+* I wish I could complete the search by keyword functionality
+* I wish I could complete the share functionality
+* I wish I could add a better loader probably a custom one
+* I wish I could also implement http interceptor for better http request and error handling
